@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from session_manager.router import router
 from session_manager.config import PORT
 
+
 app = FastAPI()
 app.include_router(router)
 

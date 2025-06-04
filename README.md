@@ -33,7 +33,6 @@ A minimal POC plan to build an event-driven agent system with parallel and seque
 | result.simulation | orchestrator-agent            |
 | result.qna        | orchestrator-agent            |
 | result.viz        | orchestrator-agent            |
-| ui.update         | \[optional] logger or UI stub |
 
 ---
 
@@ -50,6 +49,59 @@ Example: "Run simulation → then QnA and Viz in parallel"
 4. qna-agent and viz-agent run in parallel
 5. Both publish results → optionally pushed to UI or log
 
+---
+## 📁 Project Structure
+```bash
+AIMIE-BACKEND/
+├── agent-system/
+│   ├── orchestrator/                  # Orchestrator agent (replaces workflow-agent)
+│   │   ├── main.py
+│   │   ├── orchestrator.py
+│   │   └── config.py
+│   │
+│   ├── qna_agent/
+│   │   ├── main.py
+│   │   ├── agent.py
+│   │   ├── mcp_client.py
+│   │   └── tools/
+│   │       ├── mcp_server.py
+│   │       ├── tool_logic.py
+│   │       └── config.py
+│   │
+│   ├── simulation_agent/
+│   │   ├── main.py
+│   │   ├── agent.py
+│   │   ├── mcp_client.py
+│   │   └── tools/
+│   │       ├── mcp_server.py
+│   │       ├── tool_logic.py
+│   │       └── config.py
+│   │
+│   ├── viz_agent/
+│   │   ├── main.py
+│   │   ├── agent.py
+│   │   ├── mcp_client.py
+│   │   └── tools/
+│   │       ├── mcp_server.py
+│   │       ├── tool_logic.py
+│   │       └── config.py
+│   │
+│   ├── shared/                        # Shared Redis/client/message utilities
+│   │   ├── redis_client.py
+│   │   ├── message_format.py
+│   │   └── utils.py
+│
+├── session_manager/                  # Central session tracking API
+│   ├── main.py
+│   ├── router.py
+│   ├── session_store.py
+│   ├── models.py
+│   └── config.py
+│
+├── .env                              # Environment variables
+├── requirements.txt                  # Python dependencies
+└── README.md                         # Project instructions
+```
 ---
 
 ## 🧪 Your Next Steps
